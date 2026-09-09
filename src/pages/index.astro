@@ -1,0 +1,317 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'Log Analyzer',
+    stack: 'Python · Go · Kafka · REST · gRPC · PostgreSQL · pgvector · Docker · Kubernetes · Helm · Terraform · GCP · GitHub Actions',
+    description:
+      'A security log analysis tool that detects brute-force activity, port scans, and web scanning from SSH, Windows, and web-server logs. Combines deterministic detection logic with anomaly scoring, exports detection rules in Sigma-compatible formats, and includes a multi-step investigation workflow with MITRE ATT&CK context.',
+    evidence: [
+      'Evaluated against a 655,147-line public SSH log corpus',
+      'Processed at approximately 108,400 lines per second',
+      'Detection precision improved to 1.0 through a labeled evaluation harness',
+      '69× speedup on brute-force detector via linear sweep rework',
+      '376 automated tests',
+    ],
+    repo: 'https://github.com/Romil2112/log-analyzer',
+  },
+  {
+    title: 'SOC Dashboard',
+    stack: 'Python · Go · Flask · PostgreSQL · Kafka · Redis · REST · gRPC · Server-Sent Events · pgvector · Chart.js · Docker · GitHub Actions',
+    description:
+      'A full-stack security-operations dashboard for receiving, triaging, classifying, escalating, and auditing alerts. Includes severity-ranked queues, role-based access control, field-level encryption, audit trails, real-time updates, a separate ingest service, historical-similarity search, and operational metrics.',
+    evidence: [
+      'REST and gRPC ingest paths converge on the same PostgreSQL-backed alert workflow',
+      'Kafka consumer handles ingestion; Redis supports real-time alert delivery',
+      'Includes RBAC, CSRF protection, HMAC-verified API keys, encryption at rest, and audit logging',
+      'Server-side pagination and indexed SQL queries for dashboard performance',
+      '236 automated tests across Python and Go',
+      'Demo produces only server-generated synthetic security events using an isolated demo database',
+    ],
+    repo: 'https://github.com/Romil2112/SOC-Dashboard',
+  },
+  {
+    title: 'Face Tracking System',
+    stack: 'Python · FastAPI · OpenCV · YOLO · Docker · Prometheus',
+    description:
+      'A real-time face detection service with fallback behavior and operational safeguards. Uses YOLO-based detection with a Haar Cascade fallback, supports CUDA, OpenCL, and CPU execution paths, and includes liveness checks, rate limiting, metrics, and low-confidence review routing.',
+    evidence: [
+      'Fallback and circuit-breaker recovery patterns',
+      'Adaptive frame skipping and temporal filtering',
+      'Prometheus metrics and per-IP rate limiting',
+      '226 automated tests across supported Python versions',
+    ],
+    repo: 'https://github.com/Romil2112/Face-Tracking-System',
+  },
+];
+
+const experience = [
+  {
+    company: 'Unique Design Inc.',
+    role: 'Software Developer',
+    period: 'Apr 2025 – Jul 2026',
+    description:
+      'Designed and operated ETL pipelines moving Sybase and PostgreSQL data to AWS RDS, processing approximately 8 million rows per day and supporting Tableau dashboards and incident-triage workflows.',
+  },
+  {
+    company: 'Dianco Inc.',
+    role: 'Software Engineer',
+    period: 'Mar 2024 – Apr 2025',
+    description:
+      'Built Python services for firewall-log parsing and correlation, ETL and synchronization jobs across PostgreSQL and SQL Server, and Azure infrastructure with CIS Level 1 hardening.',
+  },
+  {
+    company: 'iTechNuts Solutions',
+    role: 'Software Engineer',
+    period: 'Jan 2021 – Mar 2022',
+    description:
+      'Built backend logic and gameplay features for educational mobile applications.',
+  },
+];
+
+const focus = [
+  'Backend services and APIs',
+  'Data pipelines and event-driven systems',
+  'Security tooling and detection workflows',
+  'Observability, testing, and evaluation',
+  'Cloud deployment and developer tooling',
+];
+---
+
+<BaseLayout
+  title="Romil Shah"
+  description="Backend Software Engineer building reliable data pipelines, security tooling, and developer-facing systems."
+>
+  <h1 class="visually-hidden">Romil Shah</h1>
+
+  <section class="intro container" aria-label="Introduction">
+    <p class="intro-role">Backend Software Engineer</p>
+    <p class="intro-body">
+      I build backend services and data systems with an emphasis on correctness,
+      observability, security, and practical operational reliability. My work
+      includes production ETL pipelines, security automation, API services, and
+      end-to-end developer tools.
+    </p>
+  </section>
+
+  <section class="page-section container" aria-labelledby="projects-heading">
+    <h2 id="projects-heading" class="section-label">Projects</h2>
+    <div class="projects-list">
+      {projects.map((p) => (
+        <article class="project-entry">
+          <header class="project-header">
+            <h3 class="project-title">{p.title}</h3>
+            <a
+              href={p.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-repo"
+              aria-label={`${p.title} on GitHub`}
+            >GitHub ↗</a>
+          </header>
+          <p class="project-stack">{p.stack}</p>
+          <p class="project-desc">{p.description}</p>
+          <ul class="project-evidence" role="list">
+            {p.evidence.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-section container" aria-labelledby="experience-heading">
+    <h2 id="experience-heading" class="section-label">Experience</h2>
+    <div class="exp-list">
+      {experience.map((e) => (
+        <div class="exp-entry">
+          <div class="exp-meta">
+            <span class="exp-company-role">
+              {e.company} <span class="exp-sep">—</span> {e.role}
+            </span>
+            <span class="exp-period">{e.period}</span>
+          </div>
+          <p class="exp-desc">{e.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-section container" aria-labelledby="focus-heading">
+    <h2 id="focus-heading" class="section-label">Focus</h2>
+    <ul class="focus-list" role="list">
+      {focus.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ===== Introduction ===== */
+  .intro {
+    padding-top: 2.75rem;
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .intro-role {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 0.625rem;
+    max-width: none;
+  }
+
+  .intro-body {
+    color: var(--text-muted);
+    max-width: 64ch;
+  }
+
+  /* ===== Section wrapper ===== */
+  .page-section {
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-section:last-child {
+    border-bottom: none;
+    padding-bottom: 3rem;
+  }
+
+  /* ===== Projects ===== */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.3rem;
+    flex-wrap: wrap;
+  }
+
+  .project-title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .project-repo {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--accent);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .project-repo:hover {
+    text-decoration: underline;
+    color: var(--accent-hover);
+  }
+
+  .project-stack {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 0.625rem;
+    max-width: none;
+  }
+
+  .project-desc {
+    margin-bottom: 0.75rem;
+    max-width: 68ch;
+  }
+
+  .project-evidence {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .project-evidence li {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .project-evidence li::before {
+    content: '·';
+    position: absolute;
+    left: 0.25rem;
+  }
+
+  /* ===== Experience ===== */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.625rem;
+  }
+
+  .exp-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.3rem;
+  }
+
+  .exp-company-role {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .exp-sep {
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .exp-period {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .exp-desc {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    max-width: 64ch;
+  }
+
+  /* ===== Focus ===== */
+  .focus-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .focus-list li {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .focus-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0.25rem;
+  }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 480px) {
+    .exp-period {
+      margin-left: 0;
+    }
+  }
+</style>

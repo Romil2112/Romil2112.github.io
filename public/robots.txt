@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://romil2112.github.io/sitemap-index.xml

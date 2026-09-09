@@ -1,0 +1,70 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="site-name">Romil Shah</a>
+    <nav class="header-links" aria-label="External profiles">
+      <a
+        href="https://github.com/Romil2112"
+        target="_blank"
+        rel="noopener noreferrer"
+      >GitHub</a>
+      <a
+        href="https://www.linkedin.com/in/romil2112/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >LinkedIn</a>
+      <a href="mailto:shahromil71321@gmail.com">Email</a>
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding-block: 0.875rem;
+  }
+
+  .site-name {
+    font-weight: 600;
+    font-size: var(--text-base);
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    margin-right: auto;
+  }
+
+  .site-name:hover {
+    color: var(--accent);
+  }
+
+  .header-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .header-links a {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .header-links a:hover {
+    color: var(--text);
+  }
+</style>
