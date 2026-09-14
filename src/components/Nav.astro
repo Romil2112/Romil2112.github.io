@@ -5,18 +5,19 @@ import ThemeToggle from './ThemeToggle.astro';
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="site-name">Romil Shah</a>
-    <nav class="header-links" aria-label="External profiles">
+    <nav class="header-nav" aria-label="Site navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
       <a
         href="https://github.com/Romil2112"
         target="_blank"
         rel="noopener noreferrer"
-      >GitHub</a>
-      <a
-        href="https://www.linkedin.com/in/romil2112/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >LinkedIn</a>
-      <a href="mailto:shahromil71321@gmail.com">Email</a>
+        class="nav-github"
+      >GitHub ↗</a>
     </nav>
     <ThemeToggle />
   </div>
@@ -45,26 +46,42 @@ import ThemeToggle from './ThemeToggle.astro';
     text-decoration: none;
     letter-spacing: -0.01em;
     margin-right: auto;
+    flex-shrink: 0;
   }
 
   .site-name:hover {
     color: var(--accent);
   }
 
-  .header-links {
+  .header-nav {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    gap: 1.25rem;
   }
 
-  .header-links a {
+  .header-nav a {
     font-size: var(--text-sm);
     color: var(--text-muted);
     text-decoration: none;
+    white-space: nowrap;
   }
 
-  .header-links a:hover {
+  .header-nav a:hover {
     color: var(--text);
+  }
+
+  .nav-github {
+    color: var(--accent) !important;
+  }
+
+  .nav-github:hover {
+    color: var(--accent-hover) !important;
+  }
+
+  /* On mobile, hide section links — the page is short enough to scroll naturally */
+  @media (max-width: 767px) {
+    .header-nav {
+      display: none;
+    }
   }
 </style>

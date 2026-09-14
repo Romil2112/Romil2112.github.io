@@ -4,28 +4,29 @@ const year = new Date().getFullYear();
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <nav class="footer-links" aria-label="Footer navigation">
+    <p class="footer-name">Romil Shah</p>
+    <nav class="footer-links" aria-label="Footer links">
       <a
         href="https://github.com/Romil2112"
         target="_blank"
         rel="noopener noreferrer"
-      >GitHub</a>
+      >GitHub ↗</a>
       <a
         href="https://www.linkedin.com/in/romil2112/"
         target="_blank"
         rel="noopener noreferrer"
-      >LinkedIn</a>
+      >LinkedIn ↗</a>
       <a href="mailto:shahromil71321@gmail.com">Email</a>
     </nav>
-    <p class="footer-copy">Copyright &copy; {year} Romil Shah</p>
+    <p class="footer-copy">&copy; {year}</p>
   </div>
 </footer>
 
 <style>
   .site-footer {
     border-top: 1px solid var(--border);
-    margin-top: 5rem;
     padding-block: 2rem;
+    margin-top: 1rem;
   }
 
   .footer-inner {
@@ -34,6 +35,13 @@ const year = new Date().getFullYear();
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
+  }
+
+  .footer-name {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text);
+    max-width: none;
   }
 
   .footer-links {

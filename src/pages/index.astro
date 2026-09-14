@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const projects = [
   {
     title: 'Log Analyzer',
-    stack: 'Python · Go · Kafka · REST · gRPC · PostgreSQL · pgvector · Docker · Kubernetes · Helm · Terraform · GCP · GitHub Actions',
+    stack: ['Python', 'Go', 'Claude API', 'PyTorch', 'Kafka', 'REST', 'gRPC', 'PostgreSQL', 'pgvector', 'Docker', 'Kubernetes', 'Helm', 'Terraform', 'GCP', 'GitHub Actions'],
     description:
       'A security log analysis tool that detects brute-force activity, port scans, and web scanning from SSH, Windows, and web-server logs. Combines deterministic detection logic with anomaly scoring, exports detection rules in Sigma-compatible formats, and includes a multi-step investigation workflow with MITRE ATT&CK context.',
     evidence: [
@@ -12,13 +12,15 @@ const projects = [
       'Processed at approximately 108,400 lines per second',
       'Detection precision improved to 1.0 through a labeled evaluation harness',
       '69× speedup on brute-force detector via linear sweep rework',
-      '435 automated tests',
     ],
+    tests: '435 automated tests',
     repo: 'https://github.com/Romil2112/log-analyzer',
+    image: '/images/log_report.png',
+    imageAlt: 'Log Analyzer HTML incident report showing MITRE ATT&CK coverage panel, brute-force incident table with severity scores, and ML anomaly detection results',
   },
   {
     title: 'SOC Dashboard',
-    stack: 'Python · Go · Flask · PostgreSQL · Kafka · Redis · REST · gRPC · Server-Sent Events · pgvector · Chart.js · Docker · GitHub Actions',
+    stack: ['Python', 'Go', 'Flask', 'PostgreSQL', 'Kafka', 'Redis', 'REST', 'gRPC', 'Server-Sent Events', 'pgvector', 'Chart.js', 'Docker', 'GitHub Actions'],
     description:
       'A full-stack security-operations dashboard for receiving, triaging, classifying, escalating, and auditing alerts. Includes severity-ranked queues, role-based access control, field-level encryption, audit trails, real-time updates, a separate ingest service, historical-similarity search, and operational metrics.',
     evidence: [
@@ -26,171 +28,692 @@ const projects = [
       'Kafka consumer handles ingestion; Redis supports real-time alert delivery',
       'Includes RBAC, CSRF protection, HMAC-verified API keys, encryption at rest, and audit logging',
       'Server-side pagination and indexed SQL queries for dashboard performance',
-      '243 automated tests (153 Python + 90 Go)',
     ],
+    tests: '243 automated tests (153 Python + 90 Go)',
     repo: 'https://github.com/Romil2112/SOC-Dashboard',
+    image: '/images/soc_dashboard.png',
+    imageAlt: 'SOC Dashboard main view showing 50 total alerts, open alert queue with critical and high priority incidents, and alert category breakdown chart',
   },
   {
     title: 'Face Tracking System',
-    stack: 'Python · FastAPI · OpenCV · YOLO · Docker · Prometheus',
+    stack: ['Python', 'FastAPI', 'OpenCV', 'YOLO', 'Docker', 'Prometheus'],
     description:
       'A real-time face detection service with fallback behavior and operational safeguards. Uses YOLO-based detection with a Haar Cascade fallback, supports CUDA, OpenCL, and CPU execution paths, and includes liveness checks, rate limiting, metrics, and low-confidence review routing.',
     evidence: [
       'Fallback and circuit-breaker recovery patterns',
       'Adaptive frame skipping and temporal filtering',
       'Prometheus metrics and per-IP rate limiting',
-      '236 automated tests across supported Python versions',
     ],
+    tests: '236 automated tests across supported Python versions',
     repo: 'https://github.com/Romil2112/Face-Tracking-System',
+    image: '/images/face_tracking.gif',
+    imageAlt: 'Face Tracking System terminal startup log showing YOLOv8-nano detector loading, OpenCL acceleration selection, Haar cascade fallback registration, and Prometheus metrics endpoint',
   },
 ];
 
 const experience = [
   {
     company: 'Unique Design Inc.',
+    location: 'Secaucus, NJ',
     role: 'Software Developer',
-    period: 'Apr 2025 – Jul 2026',
-    description:
-      'Designed and operated ETL pipelines moving Sybase and PostgreSQL data to AWS RDS, processing approximately 8 million rows per day and supporting Tableau dashboards and incident-triage workflows.',
+    periodStart: 'Apr 2025',
+    periodEnd: 'Jul 2026',
+    start: '2025-04',
+    end: '2026-07',
+    points: [
+      'Designed and operated SSIS and Python ETL pipelines that moved Sybase and PostgreSQL data to AWS RDS, processing approximately 8 million rows a day and feeding real-time incident data into Splunk analyst triage queues.',
+      'Built Splunk correlation rules, automated triage workflows, and C# backend modules that reduced document and metadata retrieval latency by 60 percent.',
+      'Supported Tableau dashboards used by more than 250 analysts through SQL Server and PostgreSQL pipeline work.',
+    ],
   },
   {
     company: 'Dianco Inc.',
+    location: 'New York City, NY',
     role: 'Software Engineer',
-    period: 'Mar 2024 – Apr 2025',
-    description:
-      'Built Python services for firewall-log parsing and correlation, ETL and synchronization jobs across PostgreSQL and SQL Server, and Azure infrastructure with CIS Level 1 hardening.',
+    periodStart: 'Mar 2024',
+    periodEnd: 'Apr 2025',
+    start: '2024-03',
+    end: '2025-04',
+    points: [
+      'Wrote Python services that parsed and correlated firewall logs in real time and integrated with Splunk to surface security incidents.',
+      'Built SSIS ETL and SQL synchronization jobs across PostgreSQL and SQL Server, reducing synchronization errors by 95 percent and recovering approximately 10 hours of manual work per week.',
+      'Deployed and hardened Azure infrastructure to CIS Level 1, sustaining 99.25 percent uptime.',
+    ],
   },
   {
     company: 'iTechNuts Solutions',
+    location: 'Ahmedabad, India',
     role: 'Software Engineer',
-    period: 'Jan 2021 – Mar 2022',
-    description:
-      'Built backend logic and gameplay features for educational mobile applications.',
+    periodStart: 'Jan 2021',
+    periodEnd: 'Mar 2022',
+    start: '2021-01',
+    end: '2022-03',
+    points: [
+      'Built backend logic, game state management, data persistence, and basic analytics for educational mobile applications.',
+      'Worked with designers to ship polished educational experiences on time.',
+    ],
   },
 ];
 
-const focus = [
-  'Backend services and APIs',
-  'Data pipelines and event-driven systems',
-  'Security tooling and detection workflows',
-  'Observability, testing, and evaluation',
-  'Cloud deployment and developer tooling',
+const skills = [
+  {
+    group: 'Languages and backend',
+    primary: ['Python', 'Go', 'C#/.NET', 'FastAPI', 'Flask', 'gRPC', 'REST'],
+    secondary: ['Java', 'C++', 'Bash', 'PowerShell', 'SQL'],
+  },
+  {
+    group: 'Data and pipelines',
+    primary: ['PostgreSQL', 'SQL Server', 'Kafka', 'Redis', 'SSIS', 'AWS RDS'],
+    secondary: ['MySQL', 'Sybase', 'Elasticsearch', 'NumPy', 'scikit-learn', 'PyTorch'],
+  },
+  {
+    group: 'Cloud and infrastructure',
+    primary: ['AWS', 'GCP', 'Azure IaaS', 'Docker', 'Kubernetes', 'Terraform'],
+    secondary: ['EC2', 'RDS', 'S3', 'Lambda', 'Cloud Run', 'GKE', 'Helm', 'Azure AD/SSO', 'UNIX', 'Windows Server'],
+  },
+  {
+    group: 'Security and detection',
+    primary: ['Splunk', 'MITRE ATT&CK', 'Sigma', 'CIS Level 1', 'RBAC'],
+    secondary: ['Elastic', 'Sentinel', 'Firewall log analysis', 'Incident response', 'Fernet', 'HMAC', 'Audit trails', 'PII/IP scrubbing'],
+  },
+  {
+    group: 'AI and LLM',
+    primary: ['Claude API', 'RAG', 'pgvector', 'Orkes Conductor'],
+    secondary: ['LLMs', 'Prompt engineering', 'Agent workflows', 'Embeddings', 'Latency instrumentation'],
+  },
+  {
+    group: 'Observability and delivery',
+    primary: ['Prometheus', 'OpenTelemetry', 'GitHub Actions', 'pytest', 'CI/CD'],
+    secondary: ['Azure DevOps', 'Git'],
+  },
+  {
+    group: 'Computer vision and visualization',
+    primary: ['OpenCV', 'YOLO', 'MediaPipe', 'Chart.js', 'Tableau'],
+    secondary: ['Visio'],
+  },
 ];
 ---
 
 <BaseLayout
   title="Romil Shah"
-  description="Backend Software Engineer building reliable data pipelines, security tooling, and developer-facing systems."
+  description="Software Engineer building backend systems, security tooling, and AI-assisted developer workflows."
 >
-  <h1 class="visually-hidden">Romil Shah</h1>
 
-  <section class="intro container" aria-label="Introduction">
-    <p class="intro-role">Backend Software Engineer</p>
-    <p class="intro-body">
-      I build backend services and data systems with an emphasis on correctness,
-      observability, security, and practical operational reliability. My work
-      includes production ETL pipelines, security automation, API services, and
-      end-to-end developer tools.
-    </p>
-  </section>
-
-  <section class="page-section container" aria-labelledby="projects-heading">
-    <h2 id="projects-heading" class="section-label">Projects</h2>
-    <div class="projects-list">
-      {projects.map((p) => (
-        <article class="project-entry">
-          <header class="project-header">
-            <h3 class="project-title">{p.title}</h3>
-            <a
-              href={p.repo}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-repo"
-              aria-label={`${p.title} on GitHub`}
-            >GitHub ↗</a>
-          </header>
-          <p class="project-stack">{p.stack}</p>
-          <p class="project-desc">{p.description}</p>
-          <ul class="project-evidence" role="list">
-            {p.evidence.map((item) => <li>{item}</li>)}
-          </ul>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="page-section container" aria-labelledby="experience-heading">
-    <h2 id="experience-heading" class="section-label">Experience</h2>
-    <div class="exp-list">
-      {experience.map((e) => (
-        <div class="exp-entry">
-          <div class="exp-meta">
-            <span class="exp-company-role">
-              {e.company} <span class="exp-sep">—</span> {e.role}
-            </span>
-            <span class="exp-period">{e.period}</span>
-          </div>
-          <p class="exp-desc">{e.description}</p>
+  <!-- ── Hero ─────────────────────────────────────────── -->
+  <section class="hero" aria-label="Introduction">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Software Engineer</p>
+        <h1 class="hero-name">Romil Shah</h1>
+        <p class="hero-tagline">
+          Building backend systems, security tooling, and AI-assisted developer workflows.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a
+            href="https://github.com/Romil2112"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >GitHub &#8599;</a>
+          <a
+            href="/resume/Romil_Shah_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >View r&eacute;sum&eacute; &#8599;</a>
         </div>
-      ))}
+      </div>
+
+      <aside class="hero-panel" aria-label="Profile summary">
+        <div class="panel-block">
+          <p class="panel-role">Software Engineer</p>
+          <p class="panel-spec">Backend &middot; AI/LLM &middot; Security</p>
+        </div>
+        <div class="panel-block">
+          <p class="panel-item">3+ years experience</p>
+          <p class="panel-item">Production backends</p>
+          <p class="panel-item">Data pipelines</p>
+          <p class="panel-item">Security tooling</p>
+          <p class="panel-item">Cloud systems</p>
+        </div>
+      </aside>
     </div>
   </section>
 
-  <section class="page-section container" aria-labelledby="focus-heading">
-    <h2 id="focus-heading" class="section-label">Focus</h2>
-    <ul class="focus-list" role="list">
-      {focus.map((item) => <li>{item}</li>)}
-    </ul>
+  <!-- ── About ─────────────────────────────────────────── -->
+  <section class="section" id="about" aria-labelledby="about-heading">
+    <div class="container section-two-col">
+      <h2 class="section-label" id="about-heading">About</h2>
+      <div class="about-body">
+        <p>
+          I work on software where the data is messy or the system has to hold up under pressure.
+          Most of that has been backend services, data pipelines, security tooling, and some computer vision work.
+        </p>
+        <p>
+          I like understanding how the pieces fit together before building. That usually means
+          thinking through the data model and the API first, then staying close to testing,
+          deployment, and monitoring as the work progresses.
+        </p>
+        <p>
+          At Unique Design, I built ETL pipelines moving around 8 million rows a day between
+          Sybase, PostgreSQL, and AWS RDS. At Dianco, I wrote Python services that parsed and
+          correlated firewall logs in real time. Before that, I worked on backend logic and
+          game state management for educational mobile applications.
+        </p>
+      </div>
+    </div>
   </section>
+
+  <!-- ── Experience ────────────────────────────────────── -->
+  <section class="section" id="experience" aria-labelledby="experience-heading">
+    <div class="container section-two-col">
+      <h2 class="section-label" id="experience-heading">Experience</h2>
+      <div class="exp-list">
+        {experience.map((e) => (
+          <article class="exp-entry">
+            <div class="exp-header">
+              <div class="exp-title-block">
+                <h3 class="exp-company">{e.company}</h3>
+                <span class="exp-role-meta">{e.role} &middot; {e.location}</span>
+              </div>
+              <p class="exp-period">
+                <time datetime={e.start}>{e.periodStart}</time> &#8211; <time datetime={e.end}>{e.periodEnd}</time>
+              </p>
+            </div>
+            <ul class="exp-bullets">
+              {e.points.map((pt) => <li>{pt}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Education ───────────────────────────────────────── -->
+  <section class="section" id="education" aria-labelledby="education-heading">
+    <div class="container section-two-col">
+      <h2 class="section-label" id="education-heading">Education</h2>
+      <div class="education-list">
+        <article class="education-entry">
+          <div class="education-header">
+            <div class="education-details">
+              <h3 class="education-school">Stevens Institute of Technology</h3>
+              <span class="education-location">Hoboken, NJ, USA</span>
+              <p class="education-degree">Master of Science in Computer Science</p>
+              <p class="education-degree">Graduate Certificate in Cybersecurity</p>
+            </div>
+            <p class="education-period">
+              <time datetime="2022-01">Jan 2022</time> &#8211; <time datetime="2023-12">Dec 2023</time>
+            </p>
+          </div>
+        </article>
+        <article class="education-entry">
+          <div class="education-header">
+            <div class="education-details">
+              <h3 class="education-school">Marwadi University</h3>
+              <span class="education-location">Rajkot, GJ, India</span>
+              <p class="education-degree">Bachelor of Computer Applications</p>
+            </div>
+            <p class="education-period">
+              <time datetime="2018-06">Jun 2018</time> &#8211; <time datetime="2021-05">May 2021</time>
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ──────────────────────────────────────── -->
+  <section class="section" id="projects" aria-labelledby="projects-heading">
+    <div class="container">
+      <h2 class="section-label" id="projects-heading">Projects</h2>
+      <div class="projects-grid">
+        {projects.map((p) => (
+          <article class="card project-card">
+            <div class="project-img-wrap">
+              <img
+                src={p.image}
+                alt={p.imageAlt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <header class="project-card-header">
+              <h3 class="project-title">{p.title}</h3>
+              <a
+                href={p.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-repo-link"
+                aria-label={`${p.title} on GitHub`}
+              >GitHub &#8599;</a>
+            </header>
+            <p class="project-desc">{p.description}</p>
+            <ul class="project-evidence" role="list">
+              {p.evidence.map((item) => <li>{item}</li>)}
+            </ul>
+            <div class="project-tags" aria-label="Technologies">
+              {p.stack.map((tag) => <span class="tag">{tag}</span>)}
+            </div>
+            <p class="project-tests">{p.tests}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ────────────────────────────────────────── -->
+  <section class="section" id="skills" aria-labelledby="skills-heading">
+    <div class="container section-two-col">
+      <h2 class="section-label" id="skills-heading">Skills</h2>
+      <div class="skills-groups">
+        {skills.map((s) => (
+          <div class="skill-group">
+            <span class="skill-group-label">{s.group}</span>
+            <p class="skill-primary-text">{s.primary.join(', ')}</p>
+            <p class="skill-secondary-text">{s.secondary.join(', ')}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ───────────────────────────────────────── -->
+  <section class="section" id="contact" aria-labelledby="contact-heading">
+    <div class="container section-two-col">
+      <h2 class="section-label" id="contact-heading">Contact</h2>
+      <div class="contact-block">
+        <p class="contact-intro">
+          If you are working on backend systems, security tooling, or data engineering, feel free to reach out.
+        </p>
+        <div class="contact-links">
+          <a
+            href="https://github.com/Romil2112"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >GitHub &#8599;</a>
+          <a
+            href="https://www.linkedin.com/in/romil2112/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >LinkedIn &#8599;</a>
+          <a href="mailto:shahromil71321@gmail.com" class="btn btn-outline">
+            shahromil71321@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
-  /* ===== Introduction ===== */
-  .intro {
-    padding-top: 2.75rem;
-    padding-bottom: 2.25rem;
-    border-bottom: 1px solid var(--border);
+  /* ── Hero ─────────────────────────────────────────────── */
+  .hero {
+    padding-top: 5rem;
+    padding-bottom: 4.5rem;
   }
 
-  .intro-role {
-    font-size: var(--text-base);
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .hero-eyebrow {
+    font-size: var(--text-sm);
     font-weight: 500;
     color: var(--accent);
-    margin-bottom: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
     max-width: none;
   }
 
-  .intro-body {
+  .hero-name {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-tagline {
     color: var(--text-muted);
-    max-width: 64ch;
+    max-width: var(--measure-readable);
+    margin-bottom: 2rem;
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
   }
 
-  /* ===== Section wrapper ===== */
-  .page-section {
-    padding-top: 2.25rem;
-    padding-bottom: 2.25rem;
-    border-bottom: 1px solid var(--border);
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
   }
 
-  .page-section:last-child {
-    border-bottom: none;
-    padding-bottom: 3rem;
+  /* ── Hero panel ───────────────────────────────────────── */
+  .hero-panel {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    align-self: start;
   }
 
-  /* ===== Projects ===== */
-  .projects-list {
+  .panel-block {
+    padding: 1rem 1.25rem;
+  }
+
+  .panel-block + .panel-block {
+    border-top: 1px solid var(--border);
+  }
+
+  .panel-role {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    max-width: none;
+    margin-bottom: 0.25rem;
+  }
+
+  .panel-spec {
+    font-size: 0.8rem;
+    color: var(--accent);
+    max-width: none;
+    font-weight: 500;
+  }
+
+  .panel-item {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    max-width: none;
+    line-height: 1.9;
+  }
+
+  .panel-item::before {
+    content: '\00b7\0020\0020';
+    color: var(--accent);
+  }
+
+  @media (max-width: 767px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .panel-block + .panel-block {
+      border-top: none;
+      border-left: 1px solid var(--border);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-panel {
+      display: block;
+    }
+
+    .panel-block + .panel-block {
+      border-left: none;
+      border-top: 1px solid var(--border);
+    }
+  }
+
+  /* ── Sections ─────────────────────────────────────────── */
+  .section {
+    border-top: 1px solid var(--border);
+    padding-block: 3.5rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  /* Two-column: uppercase label left, content right */
+  .section-two-col {
+    display: grid;
+    grid-template-columns: minmax(9rem, 10rem) minmax(0, 1fr);
+    gap: 0 3.5rem;
+    align-items: start;
+  }
+
+  .section-two-col .section-label {
+    padding-top: 0.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .section-two-col {
+      grid-template-columns: 1fr;
+      gap: 1rem 0;
+    }
+  }
+
+  /* ── About ────────────────────────────────────────────── */
+  .about-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .about-body > p {
+    color: var(--text-muted);
+    max-width: var(--measure-wide);
+  }
+
+  /* ── Experience ───────────────────────────────────────── */
+  .exp-list {
     display: flex;
     flex-direction: column;
     gap: 2.25rem;
   }
 
-  .project-header {
+  .exp-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .exp-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .exp-company {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .exp-role-meta {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .exp-period {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    white-space: nowrap;
+    max-width: none;
+    flex-shrink: 0;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: var(--measure-wide);
+  }
+
+  .exp-bullets li {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    padding-left: 1.125rem;
+    position: relative;
+    line-height: var(--leading-normal);
+  }
+
+  .exp-bullets li::before {
+    content: '\00b7';
+    position: absolute;
+    left: 0.375rem;
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .exp-header {
+      gap: 0.4rem;
+    }
+
+    .exp-period {
+      white-space: normal;
+    }
+  }
+
+  /* ── Education ───────────────────────────────────────── */
+  .education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .education-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .education-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .education-school {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .education-location {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .education-degree {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    max-width: none;
+  }
+
+  .education-period {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    white-space: nowrap;
+    max-width: none;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .education-header {
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .education-period {
+      white-space: normal;
+    }
+  }
+
+  /* ── Projects ─────────────────────────────────────────── */
+  .projects-grid {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .project-img-wrap {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--bg-subtle);
+  }
+
+  .project-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    display: block;
+    transition: transform 0.25s ease;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .project-card:hover .project-img-wrap img {
+      transform: scale(1.03);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 540px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .project-card-header {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.3rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
+    padding: 1rem 1.5rem 0;
   }
 
   .project-title {
@@ -199,31 +722,26 @@ const focus = [
     color: var(--text);
   }
 
-  .project-repo {
+  .project-repo-link {
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     color: var(--accent);
     text-decoration: none;
+    white-space: nowrap;
     flex-shrink: 0;
   }
 
-  .project-repo:hover {
-    text-decoration: underline;
+  .project-repo-link:hover {
     color: var(--accent-hover);
-  }
-
-  .project-stack {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin-bottom: 0.625rem;
-    max-width: none;
+    text-decoration: underline;
   }
 
   .project-desc {
-    margin-bottom: 0.75rem;
-    max-width: 68ch;
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-normal);
+    max-width: none;
+    padding: 0.625rem 1.5rem 0;
   }
 
   .project-evidence {
@@ -231,86 +749,99 @@ const focus = [
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+    padding: 0.5rem 1.5rem 0;
   }
 
   .project-evidence li {
-    font-size: var(--text-sm);
+    font-size: 0.8rem;
     color: var(--text-muted);
     padding-left: 1rem;
     position: relative;
   }
 
   .project-evidence li::before {
-    content: '·';
+    content: '\00b7';
     position: absolute;
     left: 0.25rem;
+    color: var(--accent);
   }
 
-  /* ===== Experience ===== */
-  .exp-list {
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    padding: 0.75rem 1.5rem 0;
+  }
+
+  .project-tests {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    max-width: none;
+    margin-top: 0.75rem;
+    padding: 0.625rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Skills ───────────────────────────────────────────── */
+  .skills-groups {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 3rem;
+  }
+
+  .skill-group {
     display: flex;
     flex-direction: column;
-    gap: 1.625rem;
+    gap: 0.25rem;
   }
 
-  .exp-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.3rem;
+  .skill-group-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.125rem;
   }
 
-  .exp-company-role {
+  .skill-primary-text {
     font-size: var(--text-sm);
     font-weight: 500;
     color: var(--text);
+    max-width: none;
+    line-height: var(--leading-snug);
   }
 
-  .exp-sep {
-    font-weight: 400;
-    color: var(--text-muted);
-  }
-
-  .exp-period {
-    font-family: var(--font-mono);
+  .skill-secondary-text {
     font-size: var(--text-sm);
     color: var(--text-muted);
-    white-space: nowrap;
+    max-width: none;
+    line-height: var(--leading-snug);
   }
 
-  .exp-desc {
-    font-size: var(--text-sm);
-    color: var(--text-muted);
-    max-width: 64ch;
+  @media (max-width: 640px) {
+    .skills-groups {
+      grid-template-columns: 1fr;
+    }
   }
 
-  /* ===== Focus ===== */
-  .focus-list {
-    list-style: none;
+  /* ── Contact ──────────────────────────────────────────── */
+  .contact-block {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 1.25rem;
+    max-width: var(--measure-contact);
   }
 
-  .focus-list li {
-    font-size: var(--text-sm);
+  .contact-intro {
     color: var(--text-muted);
-    padding-left: 1rem;
-    position: relative;
+    max-width: none;
   }
 
-  .focus-list li::before {
-    content: '·';
-    position: absolute;
-    left: 0.25rem;
-  }
-
-  /* ===== Mobile ===== */
-  @media (max-width: 480px) {
-    .exp-period {
-      margin-left: 0;
-    }
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 </style>
