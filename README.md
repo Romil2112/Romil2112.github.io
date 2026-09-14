@@ -1,55 +1,36 @@
-# romil-portfolio
+# Romil Shah
 
-Personal portfolio website for Romil Shah.
+Personal portfolio website for Romil Shah, a software engineer focused on backend systems, data pipelines, security tooling, and AI-assisted developer workflows.
 
-## Stack
+## Website
 
-- [Astro](https://astro.build) v7 — static site framework
-- TypeScript — strict mode
-- Plain CSS with custom properties
-- `@astrojs/sitemap` — sitemap generation
+[romil2112.github.io](https://romil2112.github.io/)
 
-## Prerequisites
+## Built With
 
-- Node.js v18 or later (tested on v26)
-- npm v9 or later
+- Astro
+- TypeScript
+- CSS
+- GitHub Pages
 
-## Local development
+## Local Development
 
 ```bash
-# Install dependencies
 npm install
-
-# Start dev server (http://localhost:4321)
 npm run dev
-
-# Type-check
-npm run check
 ```
 
-## Production build
+The development server is available at `http://localhost:4321`.
+
+## Checks
 
 ```bash
+npm run check
 npm run build
 ```
 
-Output goes to `dist/`. Preview the production build locally:
+## License
 
-```bash
-npm run preview
-```
+The website source code is available under the MIT License.
 
-## Replacing placeholders
-
-Search for the following strings and replace them before publishing:
-
-| Placeholder | Replace with |
-|---|---|
-| `https://romil2112.github.io` | Final site URL in `astro.config.ts` and `public/robots.txt` |
-| `/og-default.png` | Path to a real OG image in `public/` |
-
-## Deployment
-
-Deployment configuration has not been added yet. The site builds to static HTML with no server-side requirements. Any static host that serves files from a directory will work.
-
-After deploying, verify the live URL manually. A local build passing is not sufficient to confirm that paths, assets, and metadata resolve correctly on the host.
+The résumé, personal information, project screenshots, project GIFs, and other personal assets are not included under the MIT License. Please do not reuse them without permission.
