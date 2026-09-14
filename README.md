@@ -1,33 +1,14 @@
 # Romil Shah
 
-Personal portfolio website for Romil Shah, a software engineer focused on backend systems, data pipelines, security tooling, and AI-assisted developer workflows.
+## My Personal Website
 
-## Website
+I am Romil Shah, a software engineer focused on backend systems, data pipelines, security tooling, and reliable software.
 
-[romil2112.github.io](https://romil2112.github.io/)
+Website: [romil2112.github.io](https://romil2112.github.io/)
 
 ## Built With
 
-- Astro
-- TypeScript
-- CSS
-- GitHub Pages
-
-## Local Development
-
-```bash
-npm install
-npm run dev
-```
-
-The development server is available at `http://localhost:4321`.
-
-## Checks
-
-```bash
-npm run check
-npm run build
-```
+Astro, TypeScript, CSS, and GitHub Pages.
 
 ## License
 
